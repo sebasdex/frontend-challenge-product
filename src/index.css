@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "red-hat-text";
+  src: url("/fonts/RedHatText-VariableFont_wght.ttf") format("truetype"),
+    url("/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "red-hat-text";
+  src: url("/fonts/RedHatText-VariableFont_wght.ttf") format("truetype"),
+    url("/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "red-hat-text";
+  src: url("/fonts/RedHatText-VariableFont_wght.ttf") format("truetype"),
+    url("/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: 700;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --red: hsl(14, 86%, 42%);
+  --green: hsl(159, 69%, 38%);
+  --rose-50: hsl(20, 50%, 98%);
+  --rose-100: hsl(13, 31%, 94%);
+  --rose-300: hsl(14, 25%, 72%);
+  --rose-400: hsl(7, 20%, 60%);
+  --rose-500: hsl(12, 20%, 44%);
+  --rose-900: hsl(14, 65%, 9%);
+}
+
+body {
+  font-family: "red-hat-text", sans-serif;
+  font-size: 16px;
+  background-color: var(--rose-50);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.desserts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--rose-400);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  border: 1px solid var(--rose-400);
+}
+
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--rose-400);
+  border-radius: 0.5rem;
+}
+
+.cart-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 34rem;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--rose-400);
+}
+
+.cart-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--rose-50);
+  border: 1px solid var(--rose-400);
+}
+
+.cart-title {
+  color: var(--red);
+  border: 1px solid var(--rose-400);
+}
