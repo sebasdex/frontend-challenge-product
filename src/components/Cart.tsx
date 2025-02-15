@@ -13,8 +13,9 @@ function Cart() {
             <img
               src="./assets/images/illustration-empty-cart.svg"
               alt="empty-cart"
+              className="cart-img"
             />
-            <p>Your cart is empty</p>
+            <p className="">Your added items will appear here</p>
           </>
         ) : (
           <p>Your cart is not empty</p>
