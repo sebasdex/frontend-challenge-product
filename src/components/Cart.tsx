@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Cart() {
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty,] = useState(true);
   return (
     <section className="cart-container">
       <div className="cart-card">
@@ -15,7 +15,7 @@ function Cart() {
               alt="empty-cart"
               className="cart-img"
             />
-            <p className="">Your added items will appear here</p>
+            <p>Your added items will appear here</p>
           </>
         ) : (
           <p>Your cart is not empty</p>
