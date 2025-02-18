@@ -55,13 +55,12 @@ body {
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid var(--rose-400);
+  background-color: var(--rose-100);
 }
 
 .title {
   font-size: 2rem;
   font-weight: 700;
-  border: 1px solid var(--rose-400);
 }
 
 .items-container {
@@ -80,13 +79,14 @@ body {
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
-  border: 1px solid var(--rose-400);
   border-radius: 0.5rem;
+  position: relative;
 }
 
 .item-category {
   font-size: 0.9rem;
   color: var(--rose-400);
+  margin-top: 2rem;
 }
 
 .item-name {
@@ -111,7 +111,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  position:absolute;
+  bottom: 6rem;
+  right: 1rem;
+  left: 1rem;
 }
 
 .add-to-cart-hover {
@@ -125,6 +128,15 @@ body {
   margin: auto;
   color: white;
   border: 1px solid var(--rose-400);
+  position:absolute;
+  bottom: 6rem;
+  right: 1rem;
+  left: 1rem;
+}
+
+.image-hover{
+  outline: .2rem solid var(--red);
+  outline-offset: 2px;
 }
 
 .button-add-to-cart-hover {

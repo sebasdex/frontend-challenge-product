@@ -2,12 +2,14 @@ import { useState } from "react";
 
 interface ButtonAddCartHoverProps {
   setIsHover: (value: boolean) => void;
+  setHoverIndex: (value: number | null) => void;
 }
 
-function ButtonAddCartHover({ setIsHover }: ButtonAddCartHoverProps) {
-  const [count, setCount] = useState(1);
+function ButtonAddCartHover({ setIsHover, setHoverIndex }: ButtonAddCartHoverProps) {
+  const [count,] = useState(1);
   const handleMouseLeave = () => {
     setIsHover(false);
+    setHoverIndex(null);
   };
   return (
     <div className="add-to-cart-hover" onMouseLeave={handleMouseLeave}>
