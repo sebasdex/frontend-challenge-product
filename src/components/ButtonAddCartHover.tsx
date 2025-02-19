@@ -16,13 +16,13 @@ function ButtonAddCartHover({ setIsHover, setHoverIndex }: ButtonAddCartHoverPro
       <button className="button-add-to-cart-hover">
         <img
           src="./assets/images/icon-decrement-quantity.svg"
-          alt="remove-from-cart"
+          alt="add-to-cart"
         />
       </button>
       {count}
       <button className="button-add-to-cart-hover">
         <img
-          src="./assets/images/icon-increment-quantity.svg"
+          src={"./assets/images/icon-increment-quantity.svg"}
           alt="remove-from-cart"
         />
       </button>
