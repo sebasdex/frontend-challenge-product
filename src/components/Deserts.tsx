@@ -6,15 +6,24 @@ function Deserts() {
   const [isHover, setIsHover] = useState(false);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [currentSizeScreen, setCurrentSizeScreen] = useState(window.innerWidth);
+  const [counts, setCounts] = useState<{ [key: number]: number }>({});
 
   useEffect(() => {
     window.addEventListener("resize", () => {
       setCurrentSizeScreen(window.innerWidth);
     });
   }, []);
+
   const handleMouseEnter = (index: number) => {
     setHoverIndex(index);
     setIsHover(true);
+  };
+
+  const updateCount = (index: number, newCount: number) => {
+    setCounts((prevCounts) => ({
+      ...prevCounts,
+      [index]: newCount,
+    }));
   };
 
   return (
@@ -25,7 +34,11 @@ function Deserts() {
           <article className="item" key={index}>
             <img
               className={isHover && hoverIndex === index ? "image-hover" : ""}
-              src={currentSizeScreen >= 800 ? item.image.desktop : item.image.mobile}
+              src={
+                currentSizeScreen >= 800
+                  ? item.image.desktop
+                  : item.image.mobile
+              }
               alt={item.name.split(" ").join("-").toLowerCase()}
             />
             <div className="item-info-container">
@@ -35,7 +48,14 @@ function Deserts() {
             </div>
 
             {isHover && hoverIndex === index ? (
-              <ButtonAddCartHover setIsHover={setIsHover} setHoverIndex={setHoverIndex} />
+              <ButtonAddCartHover
+                setIsHover={setIsHover}
+                setHoverIndex={setHoverIndex}
+                count={counts[index] || 0}
+                setCount={(newCount) => updateCount(index, newCount)}
+                hoverIndex={hoverIndex}
+                index={index}
+              />
             ) : (
               <>
                 <button
