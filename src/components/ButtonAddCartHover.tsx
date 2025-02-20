@@ -5,8 +5,11 @@ interface ButtonAddCartHoverProps {
   setHoverIndex: (value: number | null) => void;
 }
 
-function ButtonAddCartHover({ setIsHover, setHoverIndex }: ButtonAddCartHoverProps) {
-  const [count,] = useState(1);
+function ButtonAddCartHover({
+  setIsHover,
+  setHoverIndex,
+}: ButtonAddCartHoverProps) {
+  const [count] = useState(1);
   const handleMouseLeave = () => {
     setIsHover(false);
     setHoverIndex(null);
