@@ -3,11 +3,12 @@ import { useStore } from "./../hooks/useStore";
 
 function Cart() {
   const { cartItems } = useStore();
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <section className="cart-container">
       <div className="cart-card">
         <h2 className="cart-title">
-          Your Cart <span className="cart-count">({cartItems.length})</span>
+          Your Cart <span className="cart-count">({totalItems})</span>
         </h2>
         {cartItems.length === 0 ? (
           <>
@@ -27,7 +28,7 @@ function Cart() {
                   <div className="cart-item-div">
                     <span className="cart-item-quantity">{item.quantity}{'x'}</span>
                     <span className="cart-item-price-one">{'@'}{item.price.toFixed(2)}</span>
-                    <span className="cart-item-price-total">${item.price.toFixed(2)}</span>
+                    <span className="cart-item-price-total">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 </section>
                 <span className="cart-item-icon-span">
@@ -37,7 +38,7 @@ function Cart() {
             ))}
             <div className="cart-total">
               <span className="cart-total-text">Order Total:</span>
-              <span className="cart-total-price">$0.00</span>
+              <span className="cart-total-price">${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
             </div>
             <div className="cart-message">
               <img src="./assets/images/icon-carbon-neutral.svg" alt="message" />
