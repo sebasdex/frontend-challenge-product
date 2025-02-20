@@ -2,11 +2,23 @@ import { useEffect, useState } from "react";
 import data from "../data/data.json";
 import ButtonAddCartHover from "./ButtonAddCartHover";
 
+interface Item {
+  name: string;
+  category: string;
+  price: number;
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  quantity: number;
+}
+
 function Deserts() {
   const [isHover, setIsHover] = useState(false);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [currentSizeScreen, setCurrentSizeScreen] = useState(window.innerWidth);
-  const [counts, setCounts] = useState<{ [key: number]: number }>({});
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -17,13 +29,6 @@ function Deserts() {
   const handleMouseEnter = (index: number) => {
     setHoverIndex(index);
     setIsHover(true);
-  };
-
-  const updateCount = (index: number, newCount: number) => {
-    setCounts((prevCounts) => ({
-      ...prevCounts,
-      [index]: newCount,
-    }));
   };
 
   return (
@@ -51,24 +56,21 @@ function Deserts() {
               <ButtonAddCartHover
                 setIsHover={setIsHover}
                 setHoverIndex={setHoverIndex}
-                count={counts[index] || 0}
-                setCount={(newCount) => updateCount(index, newCount)}
                 hoverIndex={hoverIndex}
                 index={index}
+                item={item as Item}
               />
             ) : (
-              <>
-                <button
-                  className="button-add-to-cart"
-                  onMouseEnter={() => handleMouseEnter(index)}
-                >
-                  <img
-                    src="./assets/images/icon-add-to-cart.svg"
-                    alt="add-to-cart"
-                  />
-                  Add to Cart
-                </button>
-              </>
+              <button
+                className="button-add-to-cart"
+                onMouseEnter={() => handleMouseEnter(index)}
+              >
+                <img
+                  src="./assets/images/icon-add-to-cart.svg"
+                  alt="add-to-cart"
+                />
+                Add to Cart
+              </button>
             )}
           </article>
         ))}

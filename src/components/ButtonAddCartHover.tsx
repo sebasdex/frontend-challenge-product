@@ -1,44 +1,62 @@
+import { useStore } from "./../hooks/useStore";
+
+interface Item {
+  name: string;
+  category: string;
+  price: number;
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  quantity: number;
+}
+
 interface ButtonAddCartHoverProps {
   setIsHover: (value: boolean) => void;
   setHoverIndex: (value: number | null) => void;
-  count: number;
-  setCount: (newCount: number) => void;
   index: number;
   hoverIndex: number | null;
+  item: Item;
 }
 
 function ButtonAddCartHover({
   setIsHover,
   setHoverIndex,
-  count,
-  setCount,
   hoverIndex,
   index,
+  item,
 }: ButtonAddCartHoverProps) {
+
+  const { counts, increment, decrement, addToCart, removeFromCart } = useStore();
+  const count = counts[index] || 0;
+
   const handleMouseLeave = () => {
     setIsHover(false);
     setHoverIndex(null);
   };
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
+  const handleAddToCart = (index: number, item: Item) => {
+    increment(index);
+    addToCart(item);
+  }
 
-  const handleDecrement = () => {
-    if (count === 0) return;
-    setCount(count - 1);
-  };
+  const handleDecrement = (index: number, item: Item) => {
+    decrement(index);
+    removeFromCart(item);
+  }
 
   return (
     <div className="add-to-cart-hover" onMouseLeave={handleMouseLeave}>
-      <button className="button-add-to-cart-hover" onClick={handleDecrement}>
+      <button className="button-add-to-cart-hover" onClick={() => handleDecrement(index, item)}>
         <img
           src="./assets/images/icon-decrement-quantity.svg"
           alt="decrement-quantity"
         />
       </button>
       {hoverIndex === index ? count : null}
-      <button className="button-add-to-cart-hover" onClick={handleIncrement}>
+      <button className="button-add-to-cart-hover" onClick={() => handleAddToCart(index, item)}>
         <img
           src={"./assets/images/icon-increment-quantity.svg"}
           alt="increment-quantity"
