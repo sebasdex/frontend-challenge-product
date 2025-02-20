@@ -19,22 +19,31 @@ function Cart() {
             <p>Your added items will appear here</p>
           </>
         ) : (
-          <section className="">
+          <section className="cart-item-container">
             {cartItems.map((item, index) => (
-              <div className="" key={index}>
-                <span className="">{item.name}</span>
-                <span className="">{item.quantity}</span>
-                <span className="">${item.price.toFixed(2)}</span>
+              <div className="cart-item" key={index}>
+                <section className="cart-item-info">
+                  <span className="cart-item-name">{item.name}</span>
+                  <div className="cart-item-div">
+                    <span className="cart-item-quantity">{item.quantity}{'x'}</span>
+                    <span className="cart-item-price-one">{'@'}{item.price.toFixed(2)}</span>
+                    <span className="cart-item-price-total">${item.price.toFixed(2)}</span>
+                  </div>
+                </section>
+                <span className="cart-item-icon-span">
+                  <img src="./assets/images/icon-remove-item.svg" alt="remove-from-cart" />
+                </span>
               </div>
             ))}
-            <div>
-              <span>Order Total:</span>
-              <span>$0.00</span>
+            <div className="cart-total">
+              <span className="cart-total-text">Order Total:</span>
+              <span className="cart-total-price">$0.00</span>
             </div>
-            <div>
-              <p>This is a <strong>carbon-neutral delivery</strong></p>
+            <div className="cart-message">
+              <img src="./assets/images/icon-carbon-neutral.svg" alt="message" />
+              <p>This is a <strong>carbon-neutral</strong> delivery</p>
             </div>
-            <button className="">Checkout</button>
+            <button className="cart-button">Confirm Order</button>
           </section>
         )}
       </div>
