@@ -1,5 +1,10 @@
-
+import { useStore } from "./../hooks/useStore";
 function OrderConfirmed() {
+    const { setOrderCard, reset } = useStore();
+    const handleNewOrder = () => {
+        setOrderCard(false);
+        reset();
+    }
     return (
         <section className="order-confirmed-container">
             <article className="order-confirmed-card">
@@ -12,7 +17,7 @@ function OrderConfirmed() {
                         <span className="order-price-value">$100.00</span>
                     </div>
                 </div>
-                <button className="order-button">Start New Order</button>
+                <button className="order-button" onClick={handleNewOrder}>Start New Order</button>
             </article>
         </section>
     )

@@ -2,10 +2,13 @@
 import { useStore } from "./../hooks/useStore";
 
 function Cart() {
-  const { cartItems, deleteItem } = useStore();
+  const { cartItems, deleteItem, setOrderCard } = useStore();
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const handleRemoveItem = (name: string) => {
     deleteItem(name);
+  }
+  const handleConfirmOrder = () => {
+    setOrderCard(true);
   }
   return (
     <section className="cart-container">
@@ -47,7 +50,7 @@ function Cart() {
               <img src="./assets/images/icon-carbon-neutral.svg" alt="message" />
               <p>This is a <strong>carbon-neutral</strong> delivery</p>
             </div>
-            <button className="cart-button">Confirm Order</button>
+            <button className="cart-button" onClick={handleConfirmOrder}>Confirm Order</button>
           </section>
         )}
       </div>

@@ -21,6 +21,9 @@ interface StoreState {
     addToCart: (item: Item) => void;
     removeFromCart: (item: Item) => void;
     deleteItem: (name: string) => void;
+    orderCard: boolean;
+    setOrderCard: (value: boolean) => void;
+    reset: () => void;
 }
 
 
@@ -88,5 +91,8 @@ export const useStore = create<StoreState>((set) => ({
         });
     },
 
+    reset: () => set({ cartItems: [], counts: {} }),
 
+    orderCard: false,
+    setOrderCard: (value: boolean) => set({ orderCard: value }),
 }));
