@@ -278,6 +278,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: none;
 }
 
 .cart-item-icon-span:hover {

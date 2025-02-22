@@ -2,8 +2,11 @@
 import { useStore } from "./../hooks/useStore";
 
 function Cart() {
-  const { cartItems } = useStore();
+  const { cartItems, deleteItem } = useStore();
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const handleRemoveItem = (name: string) => {
+    deleteItem(name);
+  }
   return (
     <section className="cart-container">
       <div className="cart-card">
@@ -31,9 +34,9 @@ function Cart() {
                     <span className="cart-item-price-total">${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 </section>
-                <span className="cart-item-icon-span">
+                <button className="cart-item-icon-span" onClick={() => handleRemoveItem(item.name)}>
                   <img src="./assets/images/icon-remove-item.svg" alt="remove-from-cart" />
-                </span>
+                </button>
               </div>
             ))}
             <div className="cart-total">

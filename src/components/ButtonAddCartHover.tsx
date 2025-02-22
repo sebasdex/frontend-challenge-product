@@ -30,33 +30,33 @@ function ButtonAddCartHover({
 }: ButtonAddCartHoverProps) {
 
   const { counts, increment, decrement, addToCart, removeFromCart } = useStore();
-  const count = counts[index] || 0;
+  const count = counts[item.name] || 0;
 
   const handleMouseLeave = () => {
     setIsHover(false);
     setHoverIndex(null);
   };
 
-  const handleAddToCart = (index: number, item: Item) => {
-    increment(index);
+  const handleAddToCart = (item: Item) => {
+    increment(item.name);
     addToCart(item);
   }
 
-  const handleDecrement = (index: number, item: Item) => {
-    decrement(index);
+  const handleDecrement = (item: Item) => {
+    decrement(item.name);
     removeFromCart(item);
   }
 
   return (
     <div className="add-to-cart-hover" onMouseLeave={handleMouseLeave}>
-      <button className="button-add-to-cart-hover" onClick={() => handleDecrement(index, item)}>
+      <button className="button-add-to-cart-hover" onClick={() => handleDecrement(item)}>
         <img
           src="./assets/images/icon-decrement-quantity.svg"
           alt="decrement-quantity"
         />
       </button>
       {hoverIndex === index ? count : null}
-      <button className="button-add-to-cart-hover" onClick={() => handleAddToCart(index, item)}>
+      <button className="button-add-to-cart-hover" onClick={() => handleAddToCart(item)}>
         <img
           src={"./assets/images/icon-increment-quantity.svg"}
           alt="increment-quantity"

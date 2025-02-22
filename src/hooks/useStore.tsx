@@ -15,51 +15,49 @@ interface Item {
 
 interface StoreState {
     cartItems: Item[];
-    counts: Record<number, number>;
-    increment: (index: number) => void;
-    decrement: (index: number) => void;
+    counts: Record<string, number>;
+    increment: (name: string) => void;
+    decrement: (name: string) => void;
     addToCart: (item: Item) => void;
     removeFromCart: (item: Item) => void;
+    deleteItem: (name: string) => void;
 }
+
 
 export const useStore = create<StoreState>((set) => ({
     counts: {},
     cartItems: [],
-    increment: (index) =>
+    increment: (name: string) =>
         set((state) => ({
             counts: {
                 ...state.counts,
-                [index]: (state.counts[index] || 0) + 1,
+                [name]: (state.counts[name] || 0) + 1,
             },
         })),
 
-    decrement: (index) =>
+    decrement: (name: string) =>
         set((state) => ({
             counts: {
                 ...state.counts,
-                [index]: Math.max((state.counts[index] || 0) - 1, 0),
+                [name]: Math.max((state.counts[name] || 0) - 1, 0),
             },
         })),
 
-    addToCart: (item) =>
+    addToCart: (item: Item) =>
         set((state) => {
             const existingItem = state.cartItems.find((cartItem) => cartItem.name === item.name);
-            if (existingItem) {
-                return {
-                    cartItems: state.cartItems.map((cartItem) =>
+            return {
+                cartItems: existingItem
+                    ? state.cartItems.map((cartItem) =>
                         cartItem.name === item.name
                             ? { ...cartItem, quantity: cartItem.quantity + 1 }
                             : cartItem
-                    ),
-                };
-            } else {
-                return {
-                    cartItems: [...state.cartItems, { ...item, quantity: 1 }],
-                };
-            }
+                    )
+                    : [...state.cartItems, { ...item, quantity: 1 }]
+            };
         }),
 
-    removeFromCart: (item) =>
+    removeFromCart: (item: Item) =>
         set((state) => {
             const existingItem = state.cartItems.find((cartItem) => cartItem.name === item.name);
 
@@ -77,4 +75,18 @@ export const useStore = create<StoreState>((set) => ({
                 };
             }
         }),
+
+    deleteItem: (name: string) => {
+        set((state) => {
+            const removeItem = state.cartItems.filter((cartItem) => cartItem.name !== name);
+            const updatedCounts = { ...state.counts };
+            delete updatedCounts[name];
+            return {
+                cartItems: removeItem,
+                counts: updatedCounts,
+            };
+        });
+    },
+
+
 }));
