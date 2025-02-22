@@ -1,12 +1,16 @@
 import Cart from "./components/Cart";
 import Deserts from "./components/Deserts";
+import OrderConfirmed from "./components/OrderConfirmed";
 
 function App() {
   return (
-    <main className="main">
-      <Deserts />
-      <Cart />
-    </main>
+    <>
+      <OrderConfirmed />
+      <main className="main">
+        <Deserts />
+        <Cart />
+      </main>
+    </>
   );
 }
 
